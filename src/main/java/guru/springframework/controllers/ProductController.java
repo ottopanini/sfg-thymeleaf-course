@@ -1,5 +1,6 @@
 package guru.springframework.controllers;
 
+import guru.springframework.domain.Product;
 import guru.springframework.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,8 @@ public class ProductController {
 
     @RequestMapping(value = "/product/{id}", method = RequestMethod.GET)
     public String getProductById(@PathVariable int id, Model model) {
-        model.addAttribute("product", productService.getProduct(id));
+        Product product = productService.getProduct(id);
+        model.addAttribute("product", product);
         return "product";
     }
 }
